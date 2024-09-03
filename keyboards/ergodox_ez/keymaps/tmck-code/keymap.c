@@ -12,13 +12,16 @@ enum custom_keycodes {
     SOCD_W,
     SOCD_A,
     SOCD_S,
-    SOCD_D
+    SOCD_D,
+    NULLBIND_TOGGLE,
 };
 
 bool w_down = false;
 bool a_down = false;
 bool s_down = false;
 bool d_down = false;
+
+bool nullbind_enabled = true;
 
 
 // clang-format off
@@ -46,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox_pretty(
   // left hand
-    KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_TRANSPARENT,                                     KC_DELETE,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,
+    KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           NULLBIND_TOGGLE,                                      KC_DELETE,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,
     KC_ESCAPE,      KC_Q,           SOCD_W,         KC_E,           KC_R,           KC_T,           LCTL(LSFT(KC_ESCAPE)),                                KC_END,         KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,
     KC_CAPS,        SOCD_A,         SOCD_S,         SOCD_D,           KC_F,           KC_G,                                                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        MT(MOD_LGUI, KC_QUOTE),
     KC_LEFT_SHIFT,  LT(1,KC_Z),     KC_X,           KC_C,           KC_V,           KC_B,           KC_TRANSPARENT,                                     KC_HOME,        KC_N,           KC_M,           KC_COMMA,       KC_DOT,         MT(MOD_RCTL, KC_SLASH),KC_RIGHT_SHIFT,
@@ -128,9 +131,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VRSN:
             SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
             return false;
+        case NULLBIND_TOGGLE:
+            if (record->event.pressed) {
+                if (nullbind_enabled) {
+                    ergodox_right_led_1_off();
+                    nullbind_enabled = false;
+                } else {
+                    ergodox_right_led_1_on();
+                    nullbind_enabled = true;
+                }
+            }
+            return false;
+            break;
+    }
+    switch (keycode) {
         case SOCD_W:
             if (record->event.pressed) {
-                if (s_down) {
+                if (s_down && nullbind_enabled) {
                     unregister_code(KC_S);
                 }
                 register_code(KC_W);
@@ -139,7 +156,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_W);
                 w_down = false;
 
-                if (s_down) {
+                if (s_down && nullbind_enabled) {
                     register_code(KC_S);
                 }
             }
@@ -147,7 +164,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case SOCD_A:
             if (record->event.pressed) {
-                if (d_down) {
+                if (d_down && nullbind_enabled) {
                     unregister_code(KC_D);
                 }
                 register_code(KC_A);
@@ -156,7 +173,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_A);
                 a_down = false;
 
-                if (d_down) {
+                if (d_down && nullbind_enabled) {
                     register_code(KC_D);
                 }
 
@@ -165,7 +182,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case SOCD_S:
             if (record->event.pressed) {
-                if (w_down) {
+                if (w_down && nullbind_enabled) {
                     unregister_code(KC_W);
                 }
                 register_code(KC_S);
@@ -174,7 +191,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_S);
                 s_down = false;
 
-                if (w_down) {
+                if (w_down && nullbind_enabled) {
                     register_code(KC_W);
                 }
 
@@ -183,7 +200,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case SOCD_D:
             if (record->event.pressed) {
-                if (a_down) {
+                if (a_down && nullbind_enabled) {
                     unregister_code(KC_A);
                 }
                 register_code(KC_D);
@@ -192,7 +209,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_D);
                 d_down = false;
 
-                if (a_down) {
+                if (a_down && nullbind_enabled) {
                     register_code(KC_A);
                 }
             }
