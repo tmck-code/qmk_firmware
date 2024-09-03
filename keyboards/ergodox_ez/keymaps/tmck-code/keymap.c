@@ -21,7 +21,7 @@ bool a_down = false;
 bool s_down = false;
 bool d_down = false;
 
-bool nullbind_enabled = true;
+bool nullbind_enabled = false;
 
 
 // clang-format off
