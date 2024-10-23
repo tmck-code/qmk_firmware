@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESCAPE,              KC_Q,       SOCD_W,           KC_E,    KC_R,     KC_T,     LCTL(LSFT(KC_ESCAPE)),       KC_END,      KC_Y,      KC_U,  KC_I,     KC_O,    KC_P,                   KC_BSLS,
     KC_CAPS,                SOCD_A,     SOCD_S,           SOCD_D,  KC_F,     KC_G,                                               KC_H,      KC_J,  KC_K,     KC_L,    KC_SCLN,                MT(MOD_LGUI, KC_QUOTE),
     KC_LEFT_SHIFT,          LT(1,KC_Z), KC_X,             KC_C,    KC_V,     KC_B,     KC_TRANSPARENT,              KC_HOME,     KC_N,      KC_M,  KC_COMMA, KC_DOT,  MT(MOD_RCTL, KC_SLASH), KC_RIGHT_SHIFT,
-    MT(MOD_LCTL, KC_GRAVE), KC_QUOTE,   LALT(LSFT(KC_D)), KC_LEFT, KC_RIGHT,                                                                KC_UP, KC_DOWN,  KC_LBRC, KC_RBRC,                RCTL(KC_RIGHT_ALT),
+    MT(MOD_LCTL, KC_GRAVE), LT(2,KC_QUOTE), LALT(LSFT(KC_D)), KC_LEFT, KC_RIGHT,                                                                KC_UP, KC_DOWN,  KC_LBRC, KC_RBRC,                RCTL(KC_RIGHT_ALT),
                                                                              KC_LEFT_ALT,       KC_ESCAPE,          KC_LEFT_ALT, MT(MOD_LCTL, KC_ESCAPE),
                                                                                                 KC_HOME,            KC_PAGE_UP,
                                                                              KC_SPACE, KC_BSPC, KC_END,             KC_PGDN,     KC_ENTER,  KC_TAB
