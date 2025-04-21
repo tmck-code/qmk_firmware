@@ -24,14 +24,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                                 ,--------------------------------------------------.                         ,--------------------------------------------------.
  *                                                 |   =    |   1  |   2  |   3  |   4  |   5  | LEFT |                         | RIGHT|   6  |   7  |   8  |   9  |   0  |   -    |
  *                                                 |--------+------+------+------+------+-------------|                         |------+------+------+------+------+------+--------|
- *                                                 | Del    |   Q  |   W  |   E  |   R  |   T  |  L1  |                         |  L1  |   Y  |   U  |   I  |   O  |   P  |   \    |
+ *                                                 | Del    |   Q  |   W  |   E  |   R  |   T  |  L1  |                         | End  |   Y  |   U  |   I  |   O  |   P  |   \    |
  *                                                 |--------+------+------+------+------+------|      |                         |      |------+------+------+------+------+--------|
  *                                                 | BkSp   |   A  |   S  |   D  |   F  |   G  |------|                         |------|   H  |   J  |   K  |   L  |; / L2|' / Cmd |
- *                                                 |--------+------+------+------+------+------| Hyper|                         | Meh  |------+------+------+------+------+--------|
- *                                                 | LShift |Z/Ctrl|   X  |   C  |   V  |   B  |      |                         |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
+ *                                                 |--------+------+------+------+------+------| Hyper|                         | Home |------+------+------+------+------+--------|
+ *                                                 | LShift | Z/L1 |   X  |   C  |   V  |   B  |      |                         |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
  *                                                 `--------+------+------+------+------+-------------'                         `-------------+------+------+------+------+--------'
- *                                                   |Grv/L1|  '"  |AltShf| Left | Right|                                                     |  Up  | Down |   [  |   ]  | ~L1  |
- *                                                   `----------------------------------'                                                     `----------------------------------'
+ *                                                   | Grv/ |'"/L2 |AltShf| Left | Right|                                                     |  Up  | Down |   [  |   ]  | AltR |
+ *                                                   `-Ctrl-----------------------------'                                                     `----------------------------------'
  *                                                                                        ,-------------.                     ,-------------.
  *                                                                                        | App  | LGui |                     | Alt  |Ctrl/Esc|
  *                                                                                 ,------|------|------|                     |------+--------+------.
@@ -54,14 +54,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: Symbol Layer
  *
  *                                                              ,---------------------------------------------------.                         ,--------------------------------------------------.
- *                                                              |Version  |  F1  |  F2  |  F3  |  F4  |  F5  |      |                         |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
+ *                                                              |CmdShiftU|  F1  |  F2  |  F3  |  F4  |  F5  |      |                         |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
  *                                                              |---------+------+------+------+------+------+------|                         |------+------+------+------+------+------+--------|
- *                                                              |         |   !  |   @  |   {  |   }  |   |  |      |                         |      |   Up |   7  |   8  |   9  |   *  |   F12  |
+ *                                                              |CmdShiftA|   !  |   @  |   {  |   }  |   |  |      |                         |      |   Up |   7  |   8  |   9  |   *  |   F12  |
  *                                                              |---------+------+------+------+------+------|      |                         |      |------+------+------+------+------+--------|
- *                                                              |         |   #  |   $  |   (  |   )  |   `  |------|                         |------| Down |   4  |   5  |   6  |   +  |        |
- *                                                              |---------+------+------+------+------+------|      |                         |      |------+------+------+------+------+--------|
- *                                                              |         |   %  |   ^  |   [  |   ]  |   ~  |      |                         |      |   &  |   1  |   2  |   3  |   \  |        |
- *                                                              `---------+------+------+------+------+-------------'                         `-------------+------+------+------+------+--------'
+ *                                                              |CmdShiftS|   #  |   $  |   (  |   )  |   `  |------|                         |------| Down |   4  |   5  |   6  |   +  |        |
+ *                                                              |---------+------+------+------+------+------|      |                         | Cmd+ |------+------+------+------+------+--------|
+ *                                                              |         |   %  |   ^  |   [  |   ]  |   ~  |      |                         |Shift+|   &  |   1  |   2  |   3  |   \  |        |
+ *                                                              `---------+------+------+------+------+-------------'                         `-A-----------+------+------+------+------+--------'
  *                                                                | EPRM  |      |      |      |      |                                                     |      |    . |   0  |   =  |      |
  *                                                                `-----------------------------------'                                                     `----------------------------------'
  *                                                                                                     ,-------------.                     ,-------------.
@@ -74,9 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [SYMB] = LAYOUT_ergodox_pretty(
   // left hand
-  KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,
-  KC_TRANSPARENT, KC_EXLM,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,        KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_UP,          KC_7,           KC_8,           KC_9,           KC_ASTR,        KC_F12,
-  KC_TRANSPARENT, KC_HASH,        KC_DLR,         KC_LPRN,        KC_RPRN,        KC_GRAVE,                                                                       KC_DOWN,        KC_4,           KC_5,           KC_6,           KC_TRANSPARENT, KC_TRANSPARENT,
+LGUI(LSFT(KC_U)), KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,
+LGUI(LSFT(KC_A)), KC_EXLM,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,        KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_UP,          KC_7,           KC_8,           KC_9,           KC_ASTR,        KC_F12,
+LGUI(LSFT(KC_S)), KC_HASH,        KC_DLR,         KC_LPRN,        KC_RPRN,        KC_GRAVE,                                                                       KC_DOWN,        KC_4,           KC_5,           KC_6,           KC_TRANSPARENT, KC_TRANSPARENT,
   KC_TRANSPARENT, KC_TRANSPARENT, KC_CIRC,        KC_LBRC,        KC_RBRC,        KC_TILD,        KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_AMPR,        KC_1,           KC_2,           KC_3,           KC_BSLS,        KC_TRANSPARENT,
   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_DOT,         KC_0,           KC_EQUAL,       KC_TRANSPARENT,
                                                                                                   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -138,7 +138,6 @@ bool nullbind_turn(uint16_t keycode, keyrecord_t *record) {
             } else {
                 unregister_code(KC_W);
                 w_down = false;
-
                 if (s_down && nullbind_enabled) {
                     register_code(KC_S);
                 }
@@ -155,11 +154,9 @@ bool nullbind_turn(uint16_t keycode, keyrecord_t *record) {
             } else {
                 unregister_code(KC_A);
                 a_down = false;
-
                 if (d_down && nullbind_enabled) {
                     register_code(KC_D);
                 }
-
             }
             return false;
             break;
@@ -173,11 +170,9 @@ bool nullbind_turn(uint16_t keycode, keyrecord_t *record) {
             } else {
                 unregister_code(KC_S);
                 s_down = false;
-
                 if (w_down && nullbind_enabled) {
                     register_code(KC_W);
                 }
-
             }
             return false;
             break;
@@ -191,13 +186,25 @@ bool nullbind_turn(uint16_t keycode, keyrecord_t *record) {
             } else {
                 unregister_code(KC_D);
                 d_down = false;
-
                 if (a_down && nullbind_enabled) {
                     register_code(KC_A);
                 }
             }
             return false;
             break;
+    }
+    return true;
+}
+
+bool nullbind_toggle(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        if (nullbind_enabled) {
+            ergodox_right_led_1_off();
+            nullbind_enabled = false;
+        } else {
+            ergodox_right_led_1_on();
+            nullbind_enabled = true;
+        }
     }
     return false;
 }
@@ -208,16 +215,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
             return false;
         case NULLBIND_TOGGLE:
-            if (record->event.pressed) {
-                if (nullbind_enabled) {
-                    ergodox_right_led_1_off();
-                    nullbind_enabled = false;
-                } else {
-                    ergodox_right_led_1_on();
-                    nullbind_enabled = true;
-                }
-            }
-            return false;
+            return nullbind_toggle(keycode, record);
             break;
     }
     return nullbind_turn(keycode, record);
