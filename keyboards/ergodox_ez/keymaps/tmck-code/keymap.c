@@ -16,13 +16,6 @@ enum custom_keycodes {
     NULLBIND_TOGGLE,
 };
 
-bool w_down = false;
-bool a_down = false;
-bool s_down = false;
-bool d_down = false;
-
-bool nullbind_enabled = false;
-
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -126,24 +119,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case VRSN:
-            SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-            return false;
-        case NULLBIND_TOGGLE:
-            if (record->event.pressed) {
-                if (nullbind_enabled) {
-                    ergodox_right_led_1_off();
-                    nullbind_enabled = false;
-                } else {
-                    ergodox_right_led_1_on();
-                    nullbind_enabled = true;
-                }
-            }
-            return false;
-            break;
-    }
+bool w_down = false;
+bool a_down = false;
+bool s_down = false;
+bool d_down = false;
+
+bool nullbind_enabled = false;
+
+bool nullbind_turn(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case SOCD_W:
             if (record->event.pressed) {
@@ -216,6 +199,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
     }
+    return false;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case VRSN:
+            SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+            return false;
+        case NULLBIND_TOGGLE:
+            if (record->event.pressed) {
+                if (nullbind_enabled) {
+                    ergodox_right_led_1_off();
+                    nullbind_enabled = false;
+                } else {
+                    ergodox_right_led_1_on();
+                    nullbind_enabled = true;
+                }
+            }
+            return false;
+            break;
+    }
+    return nullbind_turn(keycode, record);
     return true;
 }
 
